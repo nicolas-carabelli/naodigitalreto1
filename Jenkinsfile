@@ -39,7 +39,7 @@ pipeline {
             steps {
                 script {
                     // Iniciar sesión en ECR y subir la imagen
-                    sh 'eval $(aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${DOCKER_REPO})'
+                    sh 'echo $(aws ecr get-login-password --region ${AWS_REGION}) | docker login --username AWS --password-stdin ${DOCKER_REPO}'
                     sh "docker push ${DOCKER_REPO}:$BUILD_ID"
                 }
             }
