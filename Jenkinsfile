@@ -57,13 +57,13 @@ pipeline {
     post {
         // Manejo de notificaciones o acciones post-build
         always {
-            // Código para notificaciones aquí
+            echo 'Este paso siempre se ejecutará, independientemente del resultado del build.'
         }
         success {
-            // Acciones en caso de éxito
+            echo 'El build fue exitoso!'
         }
         failure {
-            // Acciones en caso de fallo
+            echo 'El build falló.'
         }
     }
 }
