@@ -10,9 +10,6 @@ ECR_IMAGE_URI="714715362869.dkr.ecr.us-east-1.amazonaws.com/reponaodigital:$BUIL
 sam deploy --template-file template.yaml \
            --stack-name $STACK_NAME \
            --region $AWS_REGION \
-           --s3-bucket $S3_BUCKET \  # Add this line
            --image-repository $ECR_IMAGE_URI \
            --no-fail-on-empty-changeset \
-           --capabilities CAPABILITY_IAM
-
-
+           --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND
