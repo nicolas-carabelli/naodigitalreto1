@@ -1,23 +1,14 @@
-from flask import Flask
+from flask import Flask, jsonify
+from flask_lambda import FlaskLambda
 
-app = Flask(__name__)
+app = FlaskLambda(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hola, RadioNet!'
+    return jsonify(message='¡Hola, RadioNet!')
 
 def lambda_handler(event, context):
-    # Obtener la respuesta de Flask
-    with app.test_request_context(path=event['path'], method=event['httpMethod']):
-        # Obtener la respuesta de la ruta de Flask
-        response = app.full_dispatch_request()
-        
-        # Construir la respuesta para Lambda y API Gateway
-        return {
-            "statusCode": response.status_code,
-            "headers": dict(response.headers),
-            "body": response.get_data(as_text=True)
-        }
+    return app(event, context)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True)
