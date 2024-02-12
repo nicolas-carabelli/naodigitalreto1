@@ -3,7 +3,7 @@
 # Definir variables
 AWS_REGION="us-east-1"
 STACK_NAME="ci-cd"
-ECR_IMAGE_URI="714715362869.dkr.ecr.us-east-1.amazonaws.com/reponaodigital:latest:$BUILD_ID"
+ECR_IMAGE_URI="714715362869.dkr.ecr.us-east-1.amazonaws.com/reponaodigital:$BUILD_ID"
 
 # Desplegar usando AWS CloudFormation o AWS SAM
 # Ejemplo con AWS SAM para una aplicación serverless
