@@ -5,6 +5,7 @@ pipeline {
         // Definir variables de entorno, como repositorios Docker o AWS credentials
         DOCKER_REPO = '714715362869.dkr.ecr.us-east-1.amazonaws.com/reponaodigital'
         AWS_REGION = 'us-east-1'
+        AWS_CREDENTIALS = credentials('awscredenciales')        
     }
 
     stages {
@@ -19,8 +20,8 @@ pipeline {
             steps {
                 // Ejecutar pruebas unitarias
                 script {
-                    sh 'pip install -r requirements.txt'
-                    sh 'python tests.py'
+                    sh 'python3 -m pip install -r requirements.txt'
+                    sh 'python3 tests.py'
                 }
             }
         }
@@ -38,7 +39,7 @@ pipeline {
             steps {
                 script {
                     // Iniciar sesión en ECR y subir la imagen
-                    sh "eval \$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
+                    sh "$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
                     sh "docker push ${DOCKER_REPO}:$BUILD_ID"
                 }
             }
@@ -57,13 +58,13 @@ pipeline {
     post {
         // Manejo de notificaciones o acciones post-build
         always {
-            // Código para notificaciones aquí
+            echo 'Este paso siempre se ejecutará, independientemente del resultado del build.'
         }
         success {
-            // Acciones en caso de éxito
+            echo 'El build fue exitoso!'
         }
         failure {
-            // Acciones en caso de fallo
+            echo 'El build falló.'
         }
     }
 }
