@@ -19,8 +19,8 @@ pipeline {
             steps {
                 // Ejecutar pruebas unitarias
                 script {
-                    sh 'pip install -r requirements.txt'
-                    sh 'python tests.py'
+                    sh 'python3 -m pip install -r requirements.txt'
+                    sh 'python3 tests.py'
                 }
             }
         }
