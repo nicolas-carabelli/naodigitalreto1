@@ -1,4 +1,5 @@
 import unittest
+import json
 from app import app
 
 class BasicTests(unittest.TestCase):
@@ -9,7 +10,8 @@ class BasicTests(unittest.TestCase):
     def test_home(self):
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data, b'Hola, RadioNet!')
+        data = json.loads(response.data.decode())
+        self.assertEqual(data['message'], 'Hola, RadioNet!')
 
 if __name__ == '__main__':
     unittest.main()
