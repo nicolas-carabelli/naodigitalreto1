@@ -13,6 +13,7 @@ pipeline {
             steps {
                 // Obtener código del repositorio GitHub
                 git url: 'https://github.com/nicolas-carabelli/naodigitalreto1.git', branch: 'main'
+                sh 'chmod +x deploy.sh'
             }
         }
 
