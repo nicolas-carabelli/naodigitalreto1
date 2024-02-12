@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     // Iniciar sesión en ECR y subir la imagen
-                    sh "$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
+                    sh "eval \$(aws ecr get-login --no-include-email --region ${AWS_REGION})"
                     sh "docker push ${DOCKER_REPO}:$BUILD_ID"
                 }
             }
