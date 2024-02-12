@@ -1,0 +1,23 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Un ejemplo de plantilla para desplegar una aplicación Flask en AWS Lambda
+
+Resources:
+  FlaskAppLambdaFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: .
+      Handler: app.lambda_handler
+      Runtime: python3.8
+      Events:
+        Endpoint:
+          Type: Api 
+          Properties:
+            Path: /
+            Method: get
+
+
+Outputs:
+  WebEndpoint:
+    Description: "URL de la API"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
