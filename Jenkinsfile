@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Definir variables de entorno, como repositorios Docker o AWS credentials
-        DOCKER_REPO = '714715362869.dkr.ecr.us-east-1.amazonaws.com/reponaodigital'
+        DOCKER_REPO = '714715362869.dkr.ecr.us-east-1.amazonaws.com/reponaodigital'        
         AWS_REGION = 'us-east-1'
         AWS_CREDENTIALS = credentials('awscredenciales')        
     }
